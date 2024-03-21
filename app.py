@@ -1,10 +1,38 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from models import db, User, Event
+import logging
+
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/sofya/PycharmProjects/git/.db'  # Путь к базе данных SQLite
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Отключение отслеживания изменений
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+with app.app_context():
+    # Создаем все таблицы, определенные в моделях
+    db.create_all()
+
+# Создаем пользователей
+user1 = User(username='user1', email='user1@example.com')
+user1.set_password('password1')
+
+user2 = User(username='user2', email='user2@example.com')
+user2.set_password('password2')
+
+user3 = User(username='user3', email='user3@example.com')
+user3.set_password('password3')
+
+# Добавляем пользователей в сессию и сохраняем изменения в базе данных
+db.session.add(user1)
+db.session.add(user2)
+db.session.add(user3)
+db.session.commit()
+
+
 
 # Ваш код обработки запросов и маршрутов
 
@@ -26,9 +54,6 @@ def login():
 
     return render_template('login.html', message='')
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 @app.route('/create_user')
 def create_user():
     # Создаем пользователя
@@ -39,6 +64,7 @@ def create_user():
 
     # Сохраняем изменения в базе данных
     db.session.commit()
+    logging.debug("This is a debug message")
 
     return 'User created successfully!'
 
@@ -163,24 +189,6 @@ def match():
             matched_events.append({'event': event, 'matched_attendees': matched_attendees})
 
     return render_template('match.html', matched_events=matched_events)
-
-@app.route('/communication/<username>')
-def communication(username):
-    # Здесь может быть код для перехода на страницу общения с пользователем
-    # Например, можно добавить логику для создания чата с пользователем
-    return f"You are now communicating with {username}."
-
-def communication():
-    # Получаем текущего пользователя из сессии
-    current_user = User.query.filter_by(username=session.get('username')).first()
-
-    # Получаем список пользователей, которых текущий пользователь лайкнул
-    liked_users = current_user.liked
-
-    # Получаем список пользователей, которые лайкнули текущего пользователя
-    liked_by_users = current_user.liked_by
-
-    return render_template('communication.html', liked_users=liked_users, liked_by_users=liked_by_users)
 
 @app.route('/dialog/<username>')
 def dialog(username):

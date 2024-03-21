@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match</title>
+</head>
+<body>
+    <h2>Matches</h2>
+    <ul>
+    {% for event in events %}
+        <li>
+            <h3>{{ event.name }}</h3>
+            <p>Location: {{ event.location }}</p>
+            <p>Date: {{ event.date }}</p>
+            <p>Liked by:</p>
+            <ul>
+                {% for person in event.attendees %}
+                    <li>
+                        {{ person.username }}
+                        <a href="{{ url_for('communication', username=person.username) }}">Message</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
