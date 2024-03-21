@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пример страницы</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+  <header>
+    <h1>CULTURE</h1>
+    <p>Connecting people through culture</p>
+  </header>
+
+  <nav>
+    <a href="{{ url_for('events') }}">События</a>
+    <a href="#">Мэтчи</a>
+    <a href="#">Чаты</a>
+    <a href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+  </nav>
+
+  <footer>
+    <p>Copyright © 2024 CULTURE</p>
+  </footer>
+</body>
+</html>

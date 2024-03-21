@@ -1,0 +1,75 @@
+/* Общие стили */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Bradley Hand, cursive;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Стилизация заголовка */
+header {
+  background: #1c1c1c; /* Темный фон для заголовка */
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 5em;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #999;
+}
+
+/* Стилизация навигации */
+nav {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+  margin: 0 10px;
+  padding: 10px;
+  display: inline-block;
+}
+
+nav a:hover {
+  color: #fuchsia;
+}
+
+/* Стилизация подвала */
+footer {
+  background: #1c1c1c; /* Темный фон для подвала */
+  padding: 10px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+footer p {
+  color: #999;
+  margin: 0;
+}
+
+/* Стили для основного контента, чтобы все было по центру и не расползалось на весь экран */
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media screen and (min-width: 1920px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,82 @@
+body {
+    font-family: Bradley Hand, cursive;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    color: #fff;
+}
+
+form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Adjust the form width as necessary */
+}
+
+label {
+    color: #fuchsia;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: calc(100% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #333;
+}
+
+input[type="submit"] {
+    background-color: #fuchsia;
+    color: #000;
+    font-family: Bradley Hand, cursive;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box; /* Make sure padding doesn't affect width */
+}
+
+input[type="submit"]:hover {
+    background-color: #b83763;
+}
+
+/* Добавляем стиль для кнопки like */
+.button-like {
+    background-color: #444; /* Lighter than the form background for contrast */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px; /* Add some space above the like button */
+    display: inline-block; /* So it doesn't take full width */
+}
+
+.button-like:hover {
+    background-color: #555; /* Slightly lighter on hover */
+}
+
+/* Adjust the layout for large screens */
+@media screen and (min-width: 1920px) {
+    body {
+        justify-content: flex-start; /* Align the content to the top */
+    }
+}

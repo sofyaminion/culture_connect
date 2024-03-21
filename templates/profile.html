@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
     <title>Profile</title>
 </head>
 <body>
     <h2>Profile Page</h2>
     <p>Welcome, {{ username }}!</p>
     <p>Email: {{ email }}</p>
-    <!-- Другие сведения о профиле пользователя могут быть добавлены здесь -->
+	
+	{% if current_user.username == username %}
+		<a href="{{ url_for('edit_profile', username=username) }}"><button>Edit Profile</button></a>
+    {% endif %}
 </body>
 </html>
